@@ -1,0 +1,149 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My E-commerce Website - Products</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="cart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>John Watch Accessory</h1>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Our Products</h2>
+            <p>Discover amazing Watch Accessories for your everyday style.</p>
+            <a href="#" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <section class="products">
+        <div class="container">
+            <h2>Featured Products</h2>
+            <div class="product-card" data-price="19.99">
+                <img src="https://m.media-amazon.com/images/I/713eVyyRhfL._AC_UL480_FMwebp_QL65_.jpg" width="30%" height="60%" alt="Product 1">
+                <h3>G-Shock GA-700UC</h3>
+                <p>$19.99</p>
+                <button class="btn add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card" data-price="24.99">
+                <img src="https://m.media-amazon.com/images/I/71QxggSg7dL._AC_UL480_FMwebp_QL65_.jpg" width="30%" height="60%" alt="Product 2">
+                <h3>Casio #MTP-V002G-1B Men's Standard Analog Gold Tone Stainless Steel Date Watch</h3>
+                <p>$24.99</p>
+                <button class="btn add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card" data-price="162.93">
+                <img src="https://m.media-amazon.com/images/I/41G0MZQIuaL._AC_UL480_FMwebp_QL65_.jpg" width="30%" height="60%" alt="Product 3">
+                <h3>Casio Men's Digital 5600 Series Quartz Watch GM-5600G-9, Black, 200M Water Resistant, Shock Resistant</h3>
+                <p>$162.93</p>
+                <button class="btn add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card" data-price="21.92">
+                <img src="https://m.media-amazon.com/images/I/71pii4nJGML._AC_UL480_FMwebp_QL65_.jpg" width="30%" height="60%" alt="Product 4">
+                <h3>Casio Men's Vintage CA-53W- 1R Calculator Watch</h3>
+                <p>$21.92</p>
+                <button class="btn add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card" data-price="35.50">
+                <img src="https://m.media-amazon.com/images/I/91K47FEGKhL._AC_UL480_QL65_.jpg" width="30%" height="60%" alt="Product 5">
+                <h3>Timex Men's Expedition Camper 38mm Watch</h3>
+                <p>$35.50</p>
+                <button class="btn add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card" data-price="398.00">
+                <img src="https://m.media-amazon.com/images/I/61-1UXIcS7L._AC_UL480_QL65_.jpg" width="30%" height="60%" alt="Product 6">
+                <h3>Salvatore Ferragamo Mens Quartz Chronograph Sapphire Crystal Gold- Tone Green-dial SFDK00822</h3>
+                <p>$398.00</p>
+                <button class="btn add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card" data-price="385.00">
+                <img src="https://m.media-amazon.com/images/I/71gyZyEDcbL._AC_UL480_QL65_.jpg" width="30%" height="60%" alt="Product 7">
+                <h3>Victorinox Alliance 40, Green Two Tone dial, Rose-Gold Bezel, Two Tone Stainless Steel Bracelet</h3>
+                <p>$385.00</p>
+                <button class="btn add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card" data-price="625.00">
+                <img src="https://m.media-amazon.com/images/I/81pUspFYy0L._AC_UL480_QL65_.jpg" width="30%" height="60%" alt="Product 8">
+                <h3>Victorinox Maverick Large Analog Quartz Watch- Timeless Wristwatch</h3>
+                <p>$625.00</p>
+                <button class="btn add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card" data-price="279.99">
+                <img src="https://m.media-amazon.com/images/I/71r9utXjKLL._AC_UL480_QL65_.jpg" width="30%" height="60%" alt="Product 9">
+                <h3>Versace V-Circle Collection Luxury Mens Watch Timepiece</h3>
+                <p>$279.99</p>
+                <button class="btn add-to-cart">Add to Cart</button>
+            </div>
+            <!-- Add more product cards here -->
+        </div>
+    </section>
+
+    <section class="cart">
+        <div class="container">
+            <h2>Shopping Cart</h2>
+            <ul id="cartItems"></ul>
+            <p>Total: $<span id="totalPrice">0.00</span></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 John Watch Accessories. All rights reserved.</p>
+            <p>Contact us: Johnwatchstore@example.com</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const cartItems = document.getElementById('cartItems');
+            const totalPriceElem = document.getElementById('totalPrice');
+            let totalPrice = 0;
+
+            function updateTotalPrice() {
+                totalPriceElem.textContent = totalPrice.toFixed(2);
+            }
+
+            function addToCart(productCard) {
+                const productName = productCard.querySelector('h3').textContent;
+                const productPrice = parseFloat(productCard.dataset.price);
+                totalPrice += productPrice;
+                updateTotalPrice();
+
+                const cartItem = document.createElement('li');
+                cartItem.textContent = `${productName} - $${productPrice.toFixed(2)}`;
+
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.classList.add('btn', 'remove-from-cart');
+                removeButton.addEventListener('click', function () {
+                    cartItem.remove();
+                    totalPrice -= productPrice;
+                    updateTotalPrice();
+                });
+
+                cartItem.appendChild(removeButton);
+                cartItems.appendChild(cartItem);
+            }
+
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const productCard = button.closest('.product-card');
+                    addToCart(productCard);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

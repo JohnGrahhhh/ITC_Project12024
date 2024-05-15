@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Login</title>
+</head>
+<body>
+    <form id="loginForm" action="#" method="post">
+        <h2>Login</h2>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" value="Login">      
+    </form>
+
+    <script>
+        // Retrieve user input from local storage
+        var storedUsername = localStorage.getItem('username');
+        var storedEmail = localStorage.getItem('email');
+        var storedPassword = localStorage.getItem('password');
+
+        // Fill the form fields with stored values
+        if (storedUsername && storedEmail && storedPassword) {
+            document.getElementById('username').value = storedUsername;
+            document.getElementById('email').value = storedEmail;
+            document.getElementById('password').value = storedPassword;
+        }
+
+        // Handle form submission
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get user input from the form
+            var usernameInput = document.getElementById('username').value;
+            var emailInput = document.getElementById('email').value;
+            var passwordInput = document.getElementById('password').value;
+
+            // Validate user input against stored values
+            if (usernameInput === storedUsername && emailInput === storedEmail && passwordInput === storedPassword) {
+                // Redirect to homepage
+                window.location.href = 'home.html';
+            } else {
+                // Show error message
+                alert('Please input a correct account. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

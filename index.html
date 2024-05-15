@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Registration Form</title>
+</head>
+<body>
+    <form id="registrationForm" action="login.html" method="post">
+        <h2>Register</h2>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" value="Register">		
+    </form>
+
+    <script>
+        // Get form elements
+        var registrationForm = document.getElementById('registrationForm');
+        var usernameInput = document.getElementById('username');
+        var emailInput = document.getElementById('email');
+        var passwordInput = document.getElementById('password');
+
+        // Add event listener for form submission
+        registrationForm.addEventListener('submit', function(event) {
+            // Prevent default form submission
+            event.preventDefault();
+
+            // Store user input in local storage
+            localStorage.setItem('username', usernameInput.value);
+            localStorage.setItem('email', emailInput.value);
+            localStorage.setItem('password', passwordInput.value);
+
+            // Redirect to login page
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>
